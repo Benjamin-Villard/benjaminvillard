@@ -1,17 +1,23 @@
+:root {
+	--color1 {rgb(229,255,254)};
+}
+:root {
+	--color2 {rgb(51,51,25)};
+}
 body {
 	width: 50em;
 	margin: 0 auto;
-	font-family: "Georgia Pro", Georgia Pro, Georgia, serif;
-	color: rgb(229,255,254);
-	background-color: rgb(51,51,25);
+	font-family: "Georgia Pro", Georgia, serif;
+	color: var(--color1);
+	background-color: var(--color2);
 }
 a {
-	color: rgb(229,255,254);
-	background-color: rgb(51,51,25);
+	color: var(--color1);
+	background-color: var(--color2);
 }
 a:hover {
-	color: rgb(51,51,25);
-	background-color: rgb(229,255,254);
+	color: var(--color2);
+	background-color: var(--color1);
 }
 @media screen and (max-width: 50em) {
 	body {
