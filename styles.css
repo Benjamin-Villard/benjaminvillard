@@ -3,11 +3,15 @@
 	--colorb: #333319;
 }
 body {
+	font-size: medium;
 	width: 50em;
 	margin: 0 auto;
 	font-family: "Georgia Pro", Georgia, serif;
 	color: var(--colora);
 	background-color: var(--colorb);
+}
+h1 {
+	font-style: italic;
 }
 a {
 	color: var(--colora);
