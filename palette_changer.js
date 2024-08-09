@@ -1,7 +1,10 @@
 const colorPalettes = [
-    { colora: "#E5FFFE", colorb: "#333319" }, // First palette
-    { colora: "#FFFFFF", colorb: "#000000" }, // Second palette
-    // Add more palettes here if needed
+    { colora: "#E5FFFE", colorb: "#333319" },
+    { colora: "#00eb60", colorb: "#24332e" },
+    { colora: "#fdca54", colorb: "#402a1f" },
+    { colora: "#8ad6de", colorb: "#40318e" },
+    { colora: "#ebe5cd", colorb: "#2e2e36" },
+    { colora: "#FFFFFF", colorb: "#000000" },
 ];
 
 function getCurrentPaletteIndex() {
