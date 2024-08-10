@@ -30,6 +30,9 @@ h2 {
 	font-size: small;
 	font-style: normal;
 	font-style: italic;
+	
+	margin-bottom: 0; !important
+    padding-bottom: 0; !important
 }
 
 a {
