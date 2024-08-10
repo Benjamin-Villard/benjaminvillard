@@ -25,6 +25,13 @@ h1 {
 	font-style: italic;
 }
 
+h2 {
+	font-family: var(--fontb);
+	font-size: small;
+	font-style: normal;
+	font-style: italic;
+}
+
 a {
 	color: var(--colora);
 	background-color: var(--colorb);
