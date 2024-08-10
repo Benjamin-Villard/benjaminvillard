@@ -40,13 +40,17 @@ document.addEventListener("DOMContentLoaded", function() {
         return [0, 0, 0]; // Fallback
     }
 
+    function grayscaleValue(r, g, b) {
+        return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    }
+
     function otsuThreshold(imageData) {
         const data = imageData.data;
         const histogram = Array(256).fill(0);
 
         // Calculate histogram
         for (let i = 0; i < data.length; i += 4) {
-            let gray = 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
+            let gray = grayscaleValue(data[i], data[i + 1], data[i + 2]);
             histogram[Math.floor(gray)]++;
         }
 
@@ -81,12 +85,23 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
 
+        console.log('Histogram:', histogram.slice(0, 50)); // Log first 50 values for debugging
+        console.log('Sum:', sum); // Debug log
+        console.log('SumB:', sumB); // Debug log
+        console.log('W_B:', wB); // Debug log
+        console.log('W_F:', wF); // Debug log
+        console.log('M_B:', wB ? sumB / wB : 0); // Debug log
+        console.log('M_F:', wF ? (sum - sumB) / wF : 0); // Debug log
+        console.log('Threshold:', threshold); // Debug log
+
         return threshold;
     }
 
     function apply2BitEffect() {
         document.querySelectorAll('.image-container').forEach(container => {
             const img = container.querySelector('.fullcolor-img');
+            if (!img) return;
+
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
 
@@ -101,14 +116,19 @@ document.addEventListener("DOMContentLoaded", function() {
                 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 const threshold = otsuThreshold(imageData);
 
+                console.log('Image Data:', imageData); // Debug log
+                console.log('Threshold:', threshold); // Debug log
+
                 const data = imageData.data;
                 const colorA = getComputedStyle(document.documentElement).getPropertyValue('--colora').trim();
                 const colorB = getComputedStyle(document.documentElement).getPropertyValue('--colorb').trim();
                 const rgbColorA = cssColorToRGB(colorA);
                 const rgbColorB = cssColorToRGB(colorB);
 
+                console.log('Colors Applied:', { rgbColorA, rgbColorB }); // Debug log
+
                 for (let i = 0; i < data.length; i += 4) {
-                    let gray = 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
+                    let gray = grayscaleValue(data[i], data[i + 1], data[i + 2]);
 
                     if (gray >= threshold) {
                         data[i] = rgbColorA[0];
@@ -122,6 +142,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
 
                 ctx.putImageData(imageData, 0, 0);
+            };
+
+            img.onerror = function() {
+                console.error('Error loading image.');
             };
 
             if (img.complete) {
