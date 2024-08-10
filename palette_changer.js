@@ -101,35 +101,35 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll('.image-container').forEach(container => {
             const img = container.querySelector('.fullcolor-img');
             if (!img) return;
-
+    
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
-
+    
             canvas.className = 'canvas';
             container.appendChild(canvas);
-
+    
             img.onload = function() {
                 canvas.width = img.width;
                 canvas.height = img.height;
                 ctx.drawImage(img, 0, 0);
-
+    
                 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 const threshold = otsuThreshold(imageData);
-
+    
                 console.log('Image Data:', imageData); // Debug log
                 console.log('Threshold:', threshold); // Debug log
-
+    
                 const data = imageData.data;
                 const colorA = getComputedStyle(document.documentElement).getPropertyValue('--colora').trim();
                 const colorB = getComputedStyle(document.documentElement).getPropertyValue('--colorb').trim();
                 const rgbColorA = cssColorToRGB(colorA);
                 const rgbColorB = cssColorToRGB(colorB);
-
+    
                 console.log('Colors Applied:', { rgbColorA, rgbColorB }); // Debug log
-
+    
                 for (let i = 0; i < data.length; i += 4) {
                     let gray = grayscaleValue(data[i], data[i + 1], data[i + 2]);
-
+    
                     if (gray >= threshold) {
                         data[i] = rgbColorA[0];
                         data[i + 1] = rgbColorA[1];
@@ -140,14 +140,14 @@ document.addEventListener("DOMContentLoaded", function() {
                         data[i + 2] = rgbColorB[2];
                     }
                 }
-
+    
                 ctx.putImageData(imageData, 0, 0);
             };
-
+    
             img.onerror = function() {
                 console.error('Error loading image.');
             };
-
+    
             if (img.complete) {
                 img.onload(); // Trigger load event if image is already cached
             }
