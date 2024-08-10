@@ -1,4 +1,0 @@
-<body>
-    <h1>Wer reitet so spät durch Nacht und Wind?</h1>
-    Es ist der Vater mit seinem Kind
-</body>
