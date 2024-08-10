@@ -1,22 +1,22 @@
 const posts = [
-    'posts/category1/2024-08-10-test1.txt',
-    'posts/category2/2025-08-10-test2.txt',
+    'posts/ttrpgs/2024-08-10-test1.txt',
+    'posts/fountain-pens/2025-08-10-test2.txt',
 ];
 
 // Function to parse the post information
 function parsePostInfo(postPath) {
     const pathParts = postPath.split('/');
     const fileName = pathParts[pathParts.length - 1]; // Extract the file name with extension
-    const category = pathParts[pathParts.length - 2]; // Extract the category from the path
+    const directory = pathParts.slice(0, pathParts.length - 1).join('/'); // Join all parts except the last one to get the directory path
     const dateMatch = fileName.match(/^(\d{4}-\d{2}-\d{2})/); // Regex to match the date at the start of the filename
     const date = dateMatch ? dateMatch[0] : 'unknown'; // Extract the date or set as 'unknown'
-    const title = fileName.replace('.txt', ''); // Remove the .txt extension for the title
+    const title = `${directory}/${fileName}`; // Combine directory path and file name for the title
 
     return {
         path: postPath,
-        category: category,
+        category: pathParts[pathParts.length - 2], // Extract just the category (second-to-last part)
         date: date, // Store the date for sorting
-        title: title // Store the title
+        title: title // Store the full path including '/posts' as title
     };
 }
 

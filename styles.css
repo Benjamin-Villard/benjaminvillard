@@ -1,46 +1,80 @@
 :root {
-	--colora: #E5FFFE;
-	--colorb: #333319;
-	--fonta: "Georgia Pro", Georgia, serif;
-	--fontb: "Cascadia Code", sans-serif;
+    --colora: #E5FFFE; /* Light color */
+    --colorb: #333319; /* Dark color */
+    --fonta: "Georgia Pro", Georgia, serif;
+    --fontb: "Cascadia Code", sans-serif;
+	--image-contrast: 150%
 }
 
 body {
-	font-size: medium;
-	width: 50em;
-	margin: 0 auto;
-	font-family: var(--fonta);
-	color: var(--colora);
-	background-color: var(--colorb);
+    font-size: medium;
+    width: 50em;
+    margin: 0 auto;
+    font-family: var(--fonta);
+    color: var(--colora);
+    background-color: var(--colorb);
 }
 
 @media screen and (max-width: 50em) {
-	body {
-		width: 100%;
-		margin: 0 0;
-	}
+    body {
+        width: 100%;
+        margin: 0 0;
+    }
 }
 
 h1 {
-	font-style: italic;
+    font-style: italic;
 }
 
 h2 {
-	font-family: var(--fontb);
-	font-size: small;
-	font-style: normal;
-	font-style: italic;
-	
-	margin-bottom: 0; !important
-    padding-bottom: 0; !important
+    font-family: var(--fontb);
+    font-size: small;
+    font-style: normal;
+    font-style: italic;
+    
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 a {
-	color: var(--colora);
-	background-color: var(--colorb);
+    color: var(--colora);
+    background-color: var(--colorb);
 }
 
 a:hover {
-	color: var(--colorb);
-	background-color: var(--colora);
+    color: var(--colorb);
+    background-color: var(--colora);
+}
+
+
+
+.image-container {
+    position: relative;
+    display: inline-block; /* Align images side by side if needed */
+}
+
+.fullcolor-img, .canvas {
+    display: block;
+    width: 300px; /* Adjust width */
+    height: 300px; /* Adjust height */
+    transition: opacity 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.canvas {
+    opacity: 1;
+}
+
+.fullcolor-img {
+    opacity: 0;
+}
+
+.image-container:hover .canvas {
+    opacity: 0;
+}
+
+.image-container:hover .fullcolor-img {
+    opacity: 1;
 }
