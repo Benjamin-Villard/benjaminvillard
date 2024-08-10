@@ -1,29 +1,36 @@
 :root {
 	--colora: #E5FFFE;
 	--colorb: #333319;
+	--fonta: "Georgia Pro", Georgia, serif;
+	--fontb: "Cascadia Code", sans-serif;
 }
+
 body {
 	font-size: medium;
 	width: 50em;
 	margin: 0 auto;
-	font-family: "Georgia Pro", Georgia, serif;
+	font-family: var(--fonta);
 	color: var(--colora);
 	background-color: var(--colorb);
 }
-h1 {
-	font-style: italic;
-}
-a {
-	color: var(--colora);
-	background-color: var(--colorb);
-}
-a:hover {
-	color: var(--colorb);
-	background-color: var(--colora);
-}
+
 @media screen and (max-width: 50em) {
 	body {
 		width: 100%;
 		margin: 0 0;
 	}
+}
+
+h1 {
+	font-style: italic;
+}
+
+a {
+	color: var(--colora);
+	background-color: var(--colorb);
+}
+
+a:hover {
+	color: var(--colorb);
+	background-color: var(--colora);
 }
