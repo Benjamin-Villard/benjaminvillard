@@ -39,6 +39,5 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener('load', () => {
         const currentPaletteIndex = getCurrentPaletteIndex();
         applyColorPalette(currentPaletteIndex);
-        apply2BitEffect();
     });
 });
